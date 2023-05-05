@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project _ 10 jquary</title>
+
+  <style>
+     button {
+        display: block;
+        width: 250px;
+        height: 60px;
+        margin: auto;
+        margin-top: 50px;
+        background-color: green;
+        color: white;
+        border: 1px solid white;
+        border-radius: 20px;
+        font-size: large;
+        padding: 10px;
+        cursor: pointer;
+d
+     }
+     .name{
+        text-align: center;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+     }
+     img {
+        width: 300px;
+        height: auto;
+        margin: auto;
+        display: block;
+        box-shadow: 20px 20px 10px gray;
+
+     }
+
+  </style>
+
+</head>
+<body>
+
+    <button> Generate Character</button>
+    <h1 class="name"> click the button for show </h1>
+    <img  class="img" src="" alt="Character loading......">
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            //click button
+            $("button").on("click", function() {
+                // get data from api
+                const createRandomNum = Math.ceil(Math.random() * 88)
+                $.get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${createRandomNum}.json`, function(data) {
+                    console.log(data);
+                    $("h1").text(data['name'])
+                    $(".img").attr("src", data['image'])
+
+                })
+            })
+        })
+
+    </script>
+</body>
+</html>
